@@ -7,15 +7,16 @@ import hackbright_app
 
 from flask import Flask, render_template, request
 
-# if we run this without handlers, it creates a webserver at localhost:5000, 
+# if we run this without handlers, it creates a webserver at localhost:5000,
 # but clients can't access it -> will get 404 errors
 
 # need a handler for each event, including a browser accessing the server
 app = Flask(__name__)
+
+
 @app.route("/")
 def get_github():
     return render_template("get_github.html")
-
 
 
 # http://localhost:5000/?key1=val1&key2=val2
@@ -27,14 +28,9 @@ def get_github():
 def get_student():                  # defining handler
     hackbright_app.connect_to_db()  # connects to hackbright.db in current dir
     student_github = request.args.get("github")    # key in url
-    row = hackbright_app.get_student_by_github(student_github) 
-    html = render_template("student_info.html", first_name=row[0],
-                                                last_name=row[1],
-                                                github=row[2])
+    row = hackbright_app.get_student_by_github(student_github)
+    html = render_template("student_info.html", first_name=row[0], last_name=row[1], github=row[2])
+    # , first_name=row[0], last_name=row[1], github=row[2])
     return html
-     
-
-
-
 if __name__ == "__main__":
     app.run(debug=True)
