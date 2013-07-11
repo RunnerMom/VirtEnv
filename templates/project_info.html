@@ -1,19 +1,20 @@
 <html>
 <body>
-<h1>Student: {{last_name}}, {{first_name}}</h1>
-<h2>Github account: {{github}}</h2>
+<h1>PROJECT {{project_name}}</h1>
+
 
 <table border="1">
   <tr>
-    <th>Project</th>
+    <th>First Name</th>
+    <th>Last Name</th>
     <th>Grade</th>
   </tr>
   
-    {% for item in grades_list %}
+    {% for row in rows_return %}
   <tr>
-
-  	<td><a href = "http://localhost:5000/project?project_title={{item[0]}}">{{item[0]}}</a></td>
-  	<td>{{item[1]}}</td>
+  	<td>{{row[0]}}</td>  
+  	<td>{{row[1]}}</td>  
+    <td>{{row[2]}}</td>
    </tr>
 {% endfor %}
  

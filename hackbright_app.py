@@ -38,8 +38,11 @@ def get_grade_by_student_project(first_name,last_name,project):
         ON student_github = github 
         WHERE first_name = ? 
         AND last_name =? AND project_title = ?"""
-        DB.execute(query, (first_name,last_name,project))
+        DB.execute(query, (first_name, last_name, project))
         row = DB.fetchone()
+        # print "Rows[0]:  ", rows[0]
+        # print "Rows[1]:  ", rows[1]
+        # return rows
         print """\
     First Name: %s
     Last Name: %s
@@ -48,12 +51,34 @@ def get_grade_by_student_project(first_name,last_name,project):
     except:
         print "I couldn't match this info. You're gonna have to try again."
 
+def get_grades_by_project(project_title): #new function to get all grades for given project
+    # try:
+    #     query = """SELECT student_github, grade FROM Grades 
+    #     WHERE project_title=?"""
+    #                        #return github and grade#for given project
+    #     DB.execute(query, (project_title,))
+    #     rows = DB.fetchall()
+    #     return rows
+    #     print rows
+    # except:
+    #     print "function get_grades_by_project didn't work!!!!!"
+
+# new function below to return table of fname, lname, grade for given project ####
+        query = """SELECT first_name, last_name, grade FROM Grades
+        INNER JOIN Students
+        ON student_github = github
+        WHERE project_title=?"""
+        DB.execute(query, (project_title,))
+        github_grade_list = DB.fetchall()
+        return github_grade_list
+
+
 def grades_by_student(first_name,last_name):
-    try:
+  #  try:
         query = """SELECT project_title, grade FROM Grades WHERE
         student_github = 
         (SELECT github FROM Students WHERE first_name = ? and last_name = ?)"""
-        DB.execute(query, (first_name,last_name))
+        DB.execute(query, (first_name, last_name))
         rows = DB.fetchall()
         #print "For %s %s:" %(first_name,last_name)
         return rows
@@ -66,8 +91,8 @@ def grades_by_student(first_name,last_name):
         #     return grade_string
            
 
-    except:
-        print "I can't find records for this student. Try again. "    
+   # except:
+   #     print "I can't find records for this student. Try again. "    
 
 
 
