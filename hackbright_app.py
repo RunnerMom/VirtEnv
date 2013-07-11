@@ -51,7 +51,7 @@ def get_grade_by_student_project(first_name,last_name,project):
     except:
         print "I couldn't match this info. You're gonna have to try again."
 
-def get_grades_by_project(project_title): #new function to get all grades for given project
+def get_grades_by_project(project_title):   # new function to get all grades for given project
     # try:
     #     query = """SELECT student_github, grade FROM Grades 
     #     WHERE project_title=?"""
@@ -64,7 +64,7 @@ def get_grades_by_project(project_title): #new function to get all grades for gi
     #     print "function get_grades_by_project didn't work!!!!!"
 
 # new function below to return table of fname, lname, grade for given project ####
-        query = """SELECT first_name, last_name, grade FROM Grades
+        query = """SELECT first_name, last_name, student_github, grade FROM Grades
         INNER JOIN Students
         ON student_github = github
         WHERE project_title=?"""
