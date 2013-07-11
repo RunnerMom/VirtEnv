@@ -2,13 +2,23 @@
 <body>
 <h1>Student: {{last_name}}, {{first_name}}</h1>
 <h2>Github account: {{github}}</h2>
-<h3>{{grades_list|join(', ')}}</h3>
-<h4>Project:                       Grade:</h4>
-<ul>
-{% for item in grades_list %}
-  <li>{{item[0]}}, {{item[1]}}</li>
+
+<table border="1">
+  <tr>
+    <th>Project</th>
+    <th>Grade</th>
+  </tr>
+  
+    {% for item in grades_list %}
+  <tr>
+  	<td>{{item[0]}}</td>
+  	<td>{{item[1]}}</td>
+   </tr>
 {% endfor %}
-</ul>
+ 
+</table>
+
+
 <p>This student has shown extreme recalcitrance and has generally proved to be unreliable.</p>
 <p>It is my recommendation that they be put on double-secret probation for the remainder of the course.</p>
 </body>
