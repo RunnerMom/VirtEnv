@@ -9,7 +9,7 @@ def get_student_by_github(github):
         query = """SELECT first_name, last_name, github FROM Students WHERE github = ?"""
         DB.execute(query, (github,))
         row = DB.fetchone()
-        print "Github should be: %r" % github
+      #  print "Github should be: %r" % github
         return row
     # Student: %s %s
     # Github account: %s"""%(row[0], row[1], row[2])
@@ -54,10 +54,18 @@ def grades_by_student(first_name,last_name):
         student_github = 
         (SELECT github FROM Students WHERE first_name = ? and last_name = ?)"""
         DB.execute(query, (first_name,last_name))
-        row = DB.fetchall()
-        print "For %s %s:" %(first_name,last_name)
-        for card in row:
-            print "Project: %s - Grade: %d" %(card[0],card[1])
+        rows = DB.fetchall()
+        #print "For %s %s:" %(first_name,last_name)
+        return rows
+       
+        # for card in row:
+        #     #print "Project: %s - Grade: %d" %(card[0],card[1])
+        #     grade_string = "Project: %s - Grade: %d" %(card[0], card[1])
+        #     # print grade_string
+        #     i = i + 1
+        #     return grade_string
+           
+
     except:
         print "I can't find records for this student. Try again. "    
 

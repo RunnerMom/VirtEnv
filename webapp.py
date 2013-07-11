@@ -28,9 +28,12 @@ def get_github():
 def get_student():                  # defining handler
     hackbright_app.connect_to_db()  # connects to hackbright.db in current dir
     student_github = request.args.get("github")    # key in url
-    row = hackbright_app.get_student_by_github(student_github)
-    html = render_template("student_info.html", first_name=row[0], last_name=row[1], github=row[2])
+    bar = hackbright_app.get_student_by_github(student_github)
+    grades_list = hackbright_app.grades_by_student(bar[0], bar[1])
+    html = render_template("student_info.html", first_name=bar[0], last_name=bar[1], github=bar[2], grades_list=grades_list)
     # , first_name=row[0], last_name=row[1], github=row[2])
     return html
+
+
 if __name__ == "__main__":
     app.run(debug=True)
