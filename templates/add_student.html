@@ -1,0 +1,21 @@
+<html>
+<body>
+
+The github account that you entered does not correspond to a student in our system.
+<p>
+To enter a new student record, enter first and last name:
+<p>
+<form action="/addstudent">
+<label for="github">github(supplied)</label>
+<input type="text" id="github" name='github' value={{github}}></input> <!--pre-populate github from previous page here?-->
+<p>
+<label for='first_name'>first name</label>
+<input type="text" name='first_name'></input>
+<p>
+<label for='last_name'>last name</label>
+<input type="text" name='last_name'></input>
+<input type="submit"/>
+</form>
+
+</body>
+</html>
